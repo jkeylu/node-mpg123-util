@@ -17,7 +17,7 @@ coverage
 .grunt
 
 # Compiled binary addons (http://nodejs.org/api/addons.html)
-build/Release
+build
 
 # Dependency directory
 # Commenting this out is preferred by some people, see
@@ -26,3 +26,9 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# vim
+*.swp
+
+# Mac OS
+.DS_Store

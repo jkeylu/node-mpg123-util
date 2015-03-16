@@ -1,0 +1,35 @@
+{
+  "name": "node-mpg123-util",
+  "version": "0.0.1",
+  "description": "get and set volume for lame",
+  "keywords": [
+    "lame",
+    "speaker",
+    "volume",
+    "mpg123",
+    "util"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jkeylu/node-mpg123-util.git"
+  },
+  "author": "jKey Lu <jkeylu@gmail.com> (https://github.com/jkeylu)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jkeylu/node-mpg123-util/issues"
+  },
+  "homepage": "https://github.com/jkeylu/node-mpg123-util",
+  "dependencies": {
+    "bindings": "~1.2.1",
+    "nan": "~1.7.0"
+  },
+  "devDependencies": {
+    "lame": "~1.2.0",
+    "mocha": "~2.2.1",
+    "speaker": "~0.2.4"
+  }
+}
