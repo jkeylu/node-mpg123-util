@@ -3,6 +3,19 @@
 #include "node_pointer.h"
 #include "mpg123.h"
 
+//NAN 2.x compat: -DJ
+//other modules used as example
+#define NanScope  Nan::HandleScope 
+#define args  info
+#define NanNew  Nan::New
+#define NanReturnValue  info.GetReturnValue().Set
+#define NanThrowError(str, val)  Nan::ThrowError((std::string(str) + std::to_string(val)).c_str())
+#ifdef NODE_SET_METHOD
+ #undef NODE_SET_METHOD
+#endif //def NODE_SET_METHOD
+#define NODE_SET_METHOD  Nan::SetMethod
+
+
 using namespace v8;
 using namespace node;
 

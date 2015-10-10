@@ -7,6 +7,14 @@
 #include "nan.h"
 #include "node_buffer.h"
 
+//NAN 2.x compat: -DJ
+//other modules used as example
+//#define NanNewBufferHandle  Nan::NewBuffer
+#define NanNewBufferHandle(ptr, len, cb, data)  Nan::CopyBuffer(ptr, len).ToLocalChecked()
+//#define v8_Handle  v8::Handle
+#define v8_Handle  Nan::MaybeLocal
+
+
 /*
  * Called when the "pointer" is garbage collected.
  */
@@ -19,7 +27,7 @@ inline static void wrap_pointer_cb(char *data, void *hint) {
  * Wraps "ptr" into a new SlowBuffer instance with size "length".
  */
 
-inline static v8::Handle<v8::Value> WrapPointer(void *ptr, size_t length) {
+inline static v8_Handle<v8::Value> WrapPointer(void *ptr, size_t length) {
   void *user_data = NULL;
   return NanNewBufferHandle((char *)ptr, length, wrap_pointer_cb, user_data);
 }
@@ -28,7 +36,7 @@ inline static v8::Handle<v8::Value> WrapPointer(void *ptr, size_t length) {
  * Wraps "ptr" into a new SlowBuffer instance with length 0.
  */
 
-inline static v8::Handle<v8::Value> WrapPointer(void *ptr) {
+inline static v8_Handle<v8::Value> WrapPointer(void *ptr) {
   return WrapPointer((char *)ptr, 0);
 }
 
