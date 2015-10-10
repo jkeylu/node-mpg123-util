@@ -24,12 +24,12 @@
   },
   "homepage": "https://github.com/jkeylu/node-mpg123-util",
   "dependencies": {
-    "bindings": "~1.2.1",
-    "nan": "~1.7.0"
+    "bindings": "^1.2.1",
+    "nan": "^1.7.0"
   },
   "devDependencies": {
-    "lame": "~1.2.0",
-    "mocha": "~2.2.1",
-    "speaker": "~0.2.4"
+    "lame": "^1.2.0",
+    "mocha": "^2.2.1",
+    "speaker": "^0.2.4"
   }
 }
