@@ -8,36 +8,36 @@ using namespace node;
 
 namespace {
 #define CONST_INT(value) \
-  target->ForceSet(NanNew<v8::String>(#value), NanNew<v8::Integer>(value), \
+  Nan::ForceSet(target, Nan::New(#value).ToLocalChecked(), Nan::New(value), \
       static_cast<PropertyAttribute>(ReadOnly|DontDelete));
 
   NAN_METHOD(node_mpg123_volume) {
-    NanScope();
-    mpg123_handle *mh = UnwrapPointer<mpg123_handle *>(args[0]);
-    double vol = args[1]->NumberValue();
+    Nan::HandleScope scope;
+    mpg123_handle *mh = UnwrapPointer<mpg123_handle *>(info[0]);
+    double vol = info[1]->NumberValue();
     int ret = mpg123_volume(mh, vol);
-    NanReturnValue(NanNew<v8::Integer>(ret));
+    info.GetReturnValue().Set(Nan::New<v8::Integer>(ret));
   }
 
   NAN_METHOD(node_mpg123_getvolume) {
-    NanScope();
-    mpg123_handle *mh = UnwrapPointer<mpg123_handle *>(args[0]);
+    Nan::HandleScope scope;
+    mpg123_handle *mh = UnwrapPointer<mpg123_handle *>(info[0]);
 
     double base;
     int ret = mpg123_getvolume(mh, &base, NULL, NULL);
 
     if (ret == MPG123_OK) {
-      NanReturnValue(NanNew<v8::Number>(base));
+      info.GetReturnValue().Set(Nan::New<v8::Number>(base));
     } else {
-      NanThrowError(mpg123_plain_strerror(ret), ret);
+      Nan::ThrowError(mpg123_plain_strerror(ret));
     }
   }
 
   void Initialize(Handle<Object> target) {
-    NanScope();
+    Nan::HandleScope scope;
 
-    NODE_SET_METHOD(target, "mpg123_volume", node_mpg123_volume);
-    NODE_SET_METHOD(target, "mpg123_getvolume", node_mpg123_getvolume);
+    Nan::SetMethod(target, "mpg123_volume", node_mpg123_volume);
+    Nan::SetMethod(target, "mpg123_getvolume", node_mpg123_getvolume);
   }
 } // anonymous namespace
 
